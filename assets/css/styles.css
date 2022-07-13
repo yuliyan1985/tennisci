@@ -1,0 +1,42 @@
+table {
+	font-family: arial;
+	border-collapse: collapse;
+	width: 100%;
+	/*border: 1px solid black;*/
+}
+
+td {
+	border: 5px solid #dddddd;
+	text-align: center;
+	padding: 8px;
+	background-color: #edf4ff;
+	border-color: dimgrey;
+}
+th {
+	border: 5px solid #dddddd;
+	text-align: center;
+	padding: 8px;
+	background-color: white;
+	border-color: dimgrey;
+}
+
+tr:nth-child(even) {
+	background-color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
