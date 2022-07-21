@@ -3,8 +3,11 @@
 class Players extends CI_Controller
 {
 
+
+
 	public function add()
 	{
+
 
 		$data['copyright'] = 'Tennis Draw';
 		$data['title'] = 'Добави играч';
@@ -38,6 +41,7 @@ class Players extends CI_Controller
 		$data = [
 			'id' => $id,
 		];
+
 		$data['copyright'] = 'Tennis Draw';
 
 		$this->load->view('players/scores', $data);
@@ -46,16 +50,31 @@ class Players extends CI_Controller
 
 	public function result_update()
 	{
-
 		$this->Players_model->update_result();
+
+		$this->db->from('scores');
+		$this->db->where('score', '' );
+		$rows = $this->db->count_all_results();
+
+
+		if ($rows == 0) {
+			redirect(base_url('players/winner'));
+		}
+
 		redirect(base_url());
 	}
 
 
-	public function update_winner()
+	public function winner()
 	{
-		$this->Players_model->winner();
-		echo($result->row()->players);
+		$champion['players_table'] = $this->Players_model->winner();
+
+		$this->load->view('players/winner', $champion);
+
 	}
+
 }
+
+
+
 

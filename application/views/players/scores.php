@@ -9,6 +9,7 @@
 :
 <input type="number" class="form-control required" id="result2" name="result2" min="0" max="3" placeholder="Insert score here">
 <input type="hidden" name ="scores_id" value = "<?php echo $id;?>">
+
 <br>
 <br>
 <button id="submit-button" type="submit" class="btn btn-success btn-lg btn-block">

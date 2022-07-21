@@ -81,8 +81,8 @@ class Players_model extends CI_Model
 		if (!is_null($result) && !is_null($result2)) {
 			if ((int)$result == (int)$result2) {
 				redirect('players/result/'.$this->input->post('scores_id'));
-				}
 			}
+		}
 		if ((int)$result > (int)$result2) {
 
 			$names = 'players_1';
@@ -103,29 +103,31 @@ class Players_model extends CI_Model
 
 
 
-	public function winner(){
-
+	public function winner()
+	{
 
 		$this->db->select('winner_player_id');
 		$query = $this->db->get('scores');
 		$result = $query->result();
 		$result = json_decode(json_encode($result), true);
 
+
 		$nov = [];
-		foreach ($result as $keyresult => $valueresult){
+		foreach ($result as $keyresult => $valueresult) {
 			$nov[] = $valueresult['winner_player_id'];
 		}
-
 		$countWinners = array_count_values($nov);
-		arsort($countWinners);
-		$winner = array_slice(array_keys($countWinners), 0, 1, true);
+			arsort($countWinners);
+			$winner = array_slice(array_keys($countWinners), 0, 1, true);
+			$this->db->select('players');
+			$this->db->where('id', $winner[0]);
+			$champion = $this->db->get('players_table');
+			$this->db->select('winner_player_id');
 
-		$this->db->select('players');
-		$this->db->where('id',$winner[0]);
-		$result = $this->db->get('players_table');
-		return $this->db->get($result);
 
-		redirect(base_url());
+				return ($champion->row()->players);
 
 	}
+
+
 }
