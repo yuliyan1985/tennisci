@@ -58,7 +58,7 @@ class Players extends CI_Controller
 
 
 		if ($rows == 0) {
-			redirect(base_url('players/winner'));
+			redirect('/players/winner');
 		}
 
 		redirect(base_url());
@@ -67,9 +67,11 @@ class Players extends CI_Controller
 
 	public function winner()
 	{
-		$champion['players_table'] = $this->Players_model->winner();
+		$champions['players_table'] = $this->Players_model->winner();
 
-		$this->load->view('players/winner', $champion);
+
+		$this->load->view('/players/winner', $champions);
+
 
 	}
 

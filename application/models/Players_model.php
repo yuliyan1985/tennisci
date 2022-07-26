@@ -117,15 +117,22 @@ class Players_model extends CI_Model
 			$nov[] = $valueresult['winner_player_id'];
 		}
 		$countWinners = array_count_values($nov);
-			arsort($countWinners);
-			$winner = array_slice(array_keys($countWinners), 0, 1, true);
+
+			$winners = array_keys($countWinners, max($countWinners));
+
+
+
 			$this->db->select('players');
-			$this->db->where('id', $winner[0]);
+			$this->db->where_in('id', $winners);
 			$champion = $this->db->get('players_table');
+			$champions =$champion->result_array();
+//echo'<pre>';
+//var_dump($champions);
+//exit;
 			$this->db->select('winner_player_id');
 
 
-				return ($champion->row()->players);
+				return $champions;
 
 	}
 
